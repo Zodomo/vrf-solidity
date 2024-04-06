@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.5.3 <0.7.0;
+pragma solidity ^0.8.23;
 
 import "elliptic-curve-solidity/contracts/EllipticCurve.sol";
 
@@ -452,6 +452,6 @@ library VRF {
   function pointToAddress(uint256 _x, uint256 _y)
       internal pure returns(address)
   {
-    return address(uint256(keccak256(abi.encodePacked(_x, _y))) & 0x00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF);
+    return address(uint160(uint256(keccak256(abi.encodePacked(_x, _y))) & 0x00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF));
   }
 }
